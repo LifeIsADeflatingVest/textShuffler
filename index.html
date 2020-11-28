@@ -13,13 +13,15 @@
 		<p>This will take a few seconds…</p>
 	</div>
 	<div id="select">
-		<h1>Select the Files Containing the Texts</h1>
-		<p>Please note that only .txt files are accepted. The code will run once you select the second file (bottom). If you only select the second file, the code will run producing sentences from only that work.</p>
+		<h1>Text Shuffler</h1>
+		<p>The code combines text from two different sources and returns a set of randomized sentences via so-called Markov chains (or n-grams). Take a look at <a href="https://blog.homeforfiction.com/2020/06/06/javascript-random-text-generator/" target="_blank" rel="noopener">this post on my blog</a> for more technical information</p>
+		<h2>Select the Files Containing the Texts</h2>
+		<p>Please note that only .txt files are accepted. The code will run once you select the second file (bottom). If you only select the second file, the code will run producing sentences from only that work. If one text is much longer than the other, it is more likely that the code will pick sentences exclusively using that source.</p>
 		<input type="file" accept=".txt" id="file_input1" class="button" />
 		<p></p>
 		<input type="file" accept=".txt" id="file_input2" class="button" />
 		<p></p>
-		<h1>Randomization Level</h1>
+		<h2>Randomization Level</h2>
 		<div class="switch-toggle switch-3 switch-candy">
 			<input id="on" name="state-d" type="radio" checked="" />
 			<label for="on" onclick="rnd(3);">High</label>
@@ -30,11 +32,12 @@
 		</div>
 		<br>
 		<br>
-		<p style="font-size:0.85em;">High randomization will produce less coherent (but possibly more interesting) sentences.</p>
+		<p>High randomization will produce less coherent (but possibly more interesting) sentences.</p>
 	</div>
 	<div id="output" style="display:none">
 		<p id="result"></p>
 		<button class="button2" onClick="location.reload();">Start Over</button>
+		<p style="margin-top:2em;font-size: 0.8em;">Made using the <a href="https://rednoise.org/rita/" target="_blank" rel="noopener">RiTa library</a>.</p>
 	</div>
 
 	<script>
