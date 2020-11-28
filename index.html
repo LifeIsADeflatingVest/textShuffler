@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/rita/1.3.94/rita-full.min.js"></script>
+	<script src="text.js"></script>
+</head>
+<body>
+	<div id="progress">
+		<img src="ld.gif">
+		<p>This will take a few seconds…</p>
+	</div>
+	<div id="select">
+		<h1>Select the Files Containing the Texts</h1>
+		<p>Please note that only .txt files are accepted. The code will run once you select the second file (bottom). If you only select the second file, the code will run producing sentences from only that work.</p>
+		<input type="file" accept=".txt" id="file_input1" class="button" />
+		<p></p>
+		<input type="file" accept=".txt" id="file_input2" class="button" />
+		<p></p>
+		<h1>Randomization Level</h1>
+		<div class="switch-toggle switch-3 switch-candy">
+			<input id="on" name="state-d" type="radio" checked="" />
+			<label for="on" onclick="rnd(3);">High</label>
+			<input id="na" name="state-d" type="radio" checked="checked" />
+			<label for="na" class="disabled" onclick="rnd(4);">Mid</label>
+			<input id="off" name="state-d" type="radio" />
+			<label for="off" onclick="rnd(5);">Low</label>
+		</div>
+		<br>
+		<br>
+		<p style="font-size:0.85em;">High randomization will produce less coherent (but possibly more interesting) sentences.</p>
+	</div>
+	<div id="output" style="display:none">
+		<p id="result"></p>
+		<button class="button2" onClick="location.reload();">Start Over</button>
+	</div>
+
+	<script>
+		var text1 = "";
+		var text2 = "";
+		var randNum = 4;
+		$(document).ready(function(){
+			$("#select").fadeIn(1000);
+			
+			$('#file_input1').on('change', function(e){
+				if (this.files[0].type.match('text/plain')) {
+					readFile(this.files[0], function(e) {
+					text1 = e.target.result;
+				})
+				}
+				else {
+					alert("Only .txt files are allowed!");
+				}
+			})
+			
+			$('#file_input2').on('change', function(e){
+				if (this.files[0].type.match('text/plain')) {
+					readFile(this.files[0], function(e) {
+					text2 = e.target.result;
+					/*
+					text = text.toLowerCase();
+					text = text.replace(/[.,\/#!?'"“”…’‘$%\^&\*;:{}=\-_`~()0-9]/g,"");
+					text = text.replace(/\s{2,}/g," ");
+					text = text.replace(/\s+/g,' ').trim();
+					text = text.toLowerCase();
+					*/
+					$("#select").fadeOut(1000);
+					setTimeout(
+						function() {
+							$("#progress").fadeIn(1000);
+							setTimeout(
+							function() {
+								boot();
+							}, 1010);
+					}, 1010);
+				})
+				} 
+				else {
+					alert("Only .txt files are allowed!");
+				}
+			})
+		})
+		function readFile(file, callback){
+			var reader = new FileReader();
+			reader.onload = callback
+			reader.readAsText(file);
+		}
+		
+		function rnd(value) {
+			randNum = value;
+		}
+	</script>
+</body>
+</html>
