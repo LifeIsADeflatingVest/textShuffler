@@ -13,7 +13,7 @@ function boot() {
 	var rm = new RiMarkov(randNum);
 	rm.loadText(text);
 	sentences = rm.generateSentences(5);
-	for (i = 0; i < sentences.length; i++) {
+	for (var i = 0; i < sentences.length; i++) {
 		document.getElementById("result").innerHTML += (sentences[i] + " ");
 	}
 	$("#progress").fadeOut(500);

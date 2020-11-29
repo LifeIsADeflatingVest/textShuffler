@@ -81,6 +81,12 @@ input {
 	margin:10px;
 	display:none;
 }
+#output {
+	width:50%;
+	font-family: 'Texturina', serif;
+	font-size:1.2em;
+	margin:auto;
+}
 .switch-toggle {
    float: left;
    background: #242729;
